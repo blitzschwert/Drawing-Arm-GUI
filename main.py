@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 import os
 import serial as s
+import time
 
 # Set the color theme for the GUI
 sg.theme('DarkAmber')
@@ -12,22 +13,26 @@ arm.port = 'COM1'
 
 # Create function for when the user selects a preset
 def presets(event):
-    # Create window for user
     presets_layout = [[sg.Text('Please wait...')]]
-    presets_window = sg.Window('Sending Codes', presets_layout, disable_close = True)
+    presets_window = sg.Window('Sending Codes', presets_layout, modal=True)
+    # Create window for user
 
-    # Read lines from the correct preset text file
-    with open(event) as f:
-        codes = f.readlines()
+    while True:
+     # Read lines from the correct preset text file
+        with open('./presets/' + event) as f:
+            codes = f.read().splitlines()
     
-    # Open connection to arm
-    while arm.is_open() == False:
-        arm.open()
+    # # Open connection to arm
+    # while arm.is_open() == False:
+    #     arm.open()
 
     # Send codes to arm and wait between each
-    for code in codes:
-        arm.write(code)
-        wait(5)
+        for code in codes:
+            # arm.write(code)
+            print(code)
+            time.sleep(1)
+
+        break
 
     presets_window.close()
 

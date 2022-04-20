@@ -1,0 +1,2 @@
+Installs for new machine
+python -m pip install pyserial
