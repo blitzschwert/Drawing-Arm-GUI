@@ -12,14 +12,15 @@ arm.baudrate = 9600
 arm.port = 'COM1'
 
 # Create function for when the user selects a preset
-def presets(event):
+def presets(preset):
     presets_layout = [[sg.Text('Please wait...')]]
     presets_window = sg.Window('Sending Codes', presets_layout, modal=True)
     # Create window for user
 
     while True:
+        event, values = presets_window.read(timeout=0)
      # Read lines from the correct preset text file
-        with open('./presets/' + event) as f:
+        with open('./presets/' + preset) as f:
             codes = f.read().splitlines()
     
     # # Open connection to arm
@@ -31,8 +32,8 @@ def presets(event):
             # arm.write(code)
             print(code)
             time.sleep(1)
-
-        break
+        if True:
+            break
 
     presets_window.close()
 
