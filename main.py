@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 import os
+import subprocess as sp
 import serial as s
 import time
 
@@ -52,5 +53,7 @@ while True:
         break
     elif event == 'Line' or event == 'Square' or event == 'Circle' or event == 'Heart' or event == 'Star':
         presets(event)
+    elif event == 'Drawing' or event == 'Import Image' or event == 'Take Picture':
+        sp.call('./dist/test.exe')
 
 main_window.close()

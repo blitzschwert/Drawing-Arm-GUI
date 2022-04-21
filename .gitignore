@@ -1,1 +1,17 @@
 JD 2 Project.code-workspace
+test.spec
+build/test/Analysis-00.toc
+build/test/base_library.zip
+build/test/EXE-00.toc
+build/test/PKG-00.toc
+build/test/PYZ-00.pyz
+build/test/PYZ-00.toc
+build/test/test.exe.manifest
+build/test/test.pkg
+build/test/warn-test.txt
+build/test/xref-test.html
+build/test/localpycos/struct.pyo
+dist/test.exe
+build/test/Tree-00.toc
+build/test/Tree-01.toc
+build/test/Tree-02.toc
