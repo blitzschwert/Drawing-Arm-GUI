@@ -10,7 +10,8 @@ sg.theme('DarkAmber')
 # Start up serial communication
 arm = s.Serial()
 arm.baudrate = 9600
-arm.port = 'COM1'
+arm.port = 'COM4'
+arm.timeout = 2
 
 # Create function for when the user selects a preset
 def presets(preset):
@@ -24,29 +25,33 @@ def presets(preset):
         with open('./presets/' + preset) as f:
             codes = f.read().splitlines()
     
-    # # Open connection to arm
-    # while arm.is_open() == False:
-    #     arm.open()
+    # Open connection to arm
+        arm.open()
+        time.sleep(2)
 
     # Send codes to arm and wait between each
         for code in codes:
-            # arm.write(code)
+            arm.write(code.encode())
             print(code)
-            time.sleep(1)
+            msg = arm.readline()
+            print(msg.decode())
         if True:
             break
 
+    arm.close()
     presets_window.close()
 
-
+# Create layout for main GUI
 layout = [  [sg.Text('Pick an option')],
             [sg.Text('Presets')],
             [sg.Button('Line'), sg.Button('Square'), sg.Button('Circle'), sg.Button('Heart'), sg.Button('Star')],
             [sg.Text('Custom')],
             [sg.Button('Drawing'), sg.Button('Import Image'), sg.Button('Take Picture')]  ]
 
+# Open GUI window
 main_window = sg.Window('Drawing Arm Control', layout)
 
+# Enter window loop
 while True:
     event, values = main_window.read()
     if event == sg.WIN_CLOSED:
@@ -56,4 +61,5 @@ while True:
     elif event == 'Drawing' or event == 'Import Image' or event == 'Take Picture':
         sp.call('./dist/test.exe')
 
+# Close window
 main_window.close()
