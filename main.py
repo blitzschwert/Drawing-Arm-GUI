@@ -1,3 +1,6 @@
+# Author:   Craig Brod
+# Created:  4.17.2022
+
 import PySimpleGUI as sg
 import os
 import subprocess as sp
