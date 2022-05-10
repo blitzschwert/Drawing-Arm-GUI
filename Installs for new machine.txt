@@ -1,2 +1,5 @@
 Installs for new machine
 python -m pip install pyserial
+python pip install numpy
+python pip install opencv-contrib-python
+python pip install pysimplegui
