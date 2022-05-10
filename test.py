@@ -1,12 +1,18 @@
+import sys
 import PySimpleGUI as sg
 
-layout = [[sg.Text('This is a placeholder program'), sg.Button('Ok')]]
+sg.theme('DarkAmber')
 
-window = sg.Window('Temp', layout)
+def setMode(option):
+    if option == "-d" or option == "draw":
+        print("drawing mode")
+    elif option == "-i" or option == "import":
+        filename = sg.popup_get_file('Picture to copy')
+        print(filename)
+        print("import mode")
+    elif option == "-p" or option == "picture":
+        print("picture mode")
 
-while True:
-    event, values = window.read()
-    if event == sg.WIN_CLOSED or event == 'Ok':
-        break
-
-window.close()
+to_display = sys.argv[1]
+print(to_display)
+setMode(to_display)

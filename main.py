@@ -61,8 +61,12 @@ while True:
         break
     elif event == 'Line' or event == 'Square' or event == 'Circle' or event == 'Heart' or event == 'Star':
         presets(event)
-    elif event == 'Drawing' or event == 'Import Image' or event == 'Take Picture':
-        sp.call('./dist/test.exe')
+    elif event == 'Drawing':
+        sp.call('python ./cvmain.py -d')
+    elif event == 'Import Image':
+        sp.call('python ./cvmain.py -i')
+    elif event == 'Take Picture':
+        sp.call('python ./cvmain.py -p')
 
 # Close window
 main_window.close()
