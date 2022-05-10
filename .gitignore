@@ -15,3 +15,14 @@ dist/test.exe
 build/test/Tree-00.toc
 build/test/Tree-01.toc
 build/test/Tree-02.toc
+OpenCV Examples/Demo_OpenCV_4_Line_Program.py
+OpenCV Examples/Demo_OpenCV_7_Line_Program.py
+OpenCV Examples/Demo_OpenCV_Draw_On_Webcam_Image.py
+OpenCV Examples/Demo_OpenCV_Simple_GUI.py
+OpenCV Examples/Demo_OpenCV_Webcam_ASCII.py
+OpenCV Examples/Demo_OpenCV_Webcam_Minimal.py
+OpenCV Examples/Demo_OpenCV_Webcam.py
+OpenCV Examples/Demo_OpenCV.py
+temp_img.png
+test.png
+data_to_send.txt
