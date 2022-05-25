@@ -29,27 +29,59 @@ def presets(preset):
             codes = f.read().splitlines()
     
     # Open connection to arm
-        arm.open()
-        time.sleep(2)
+        # arm.open()
+        # time.sleep(2)
 
-    # Send codes to arm and wait between each
+    # Send codes to arm
         for code in codes:
-            arm.write(code.encode())
+            # arm.write(code.encode())
             print(code)
-            msg = arm.readline()
-            print(msg.decode())
+            # msg = arm.readline()
+            # print(msg.decode())
         if True:
             break
 
-    arm.close()
+    # arm.close()
     presets_window.close()
+
+# Create a function that will send the data from the secondary program
+def send_data():
+    send_layout = [[sg.Text('Please wait...')]]
+    send_window = sg.Window('Sending Codes', send_layout, modal=True)
+    # Create window for user
+
+    while True:
+        event, values = send_window.read(timeout=0)
+     # Read lines from the data_to_send text file
+        with open('./data_to_send.txt') as f:
+            codes = f.read().splitlines()
+    
+    # Open connection to arm
+        # arm.open()
+        time.sleep(2)
+
+    # Send codes to arm
+        for code in codes:
+            # arm.write(code.encode())
+            print(code)
+            # msg = arm.readline()
+            # print(msg.decode())
+        if True:
+            break
+
+    # arm.close()
+    send_window.close()
 
 # Create layout for main GUI
 layout = [  [sg.Text('Pick an option')],
             [sg.Text('Presets')],
             [sg.Button('Line'), sg.Button('Square'), sg.Button('Circle'), sg.Button('Heart'), sg.Button('Star')],
             [sg.Text('Custom')],
-            [sg.Button('Drawing'), sg.Button('Import Image'), sg.Button('Take Picture')]  ]
+            [sg.Button('Drawing'), sg.Button('Import Image'), sg.Button('Take Picture')],
+            [sg.Text('Other Commands')],
+            [sg.Button('G0'), sg.Button('G1'), sg.Button('G90'), sg.Button('G91'), sg.Button('G20')],
+            [sg.Button('G21'), sg.Button('M2'), sg.Button('M6'), sg.Button('M72')],
+            [sg.Text('X'), sg.InputText(), sg.Text('Y'), sg.InputText()]  ]
 
 # Open GUI window
 main_window = sg.Window('Drawing Arm Control', layout)
@@ -63,10 +95,13 @@ while True:
         presets(event)
     elif event == 'Drawing':
         sp.call('python ./cvmain.py -d')
+        send_data()
     elif event == 'Import Image':
         sp.call('python ./cvmain.py -i')
+        send_data()
     elif event == 'Take Picture':
         sp.call('python ./cvmain.py -p')
+        send_data()
 
 # Close window
 main_window.close()
