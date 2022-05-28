@@ -97,6 +97,7 @@ f = open('data_to_send.txt', 'w')
 
 # Set accuracy, counter, and machine origin point
 accuracy = 0.009
+# accuracy = 0.5
 b = 0
 f.write('G0 X0 Y0\n')
 for cnt in contours:
@@ -112,8 +113,13 @@ for cnt in contours:
             # Write points into text file
             x = repr(n[i])
             y = repr(n[i + 1])
-            f.write('G1 X' + x + ' Y' + y + '\n')
+            x = int(x)/4 + 100
+            y = int(y)/4 + 100
+            if j == 0:
+                f.write('G0 X' + str(x) + ' Y' + str(y) + '\n')
+            f.write('G1 X' + str(x) + ' Y' + str(y) + 'F1000\n')
         i = i + 1
+f.write('M2')
 
 # Create test image for debugging purposes
 imgx, imgy = img.shape
